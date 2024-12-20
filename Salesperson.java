@@ -1,5 +1,7 @@
-//import java.util.Scanner;
-//import java.sql.*;
+import java.util.Scanner;
+import java.sql.*;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class Salesperson {
 
@@ -87,9 +89,10 @@ public class Salesperson {
             System.out.println("Product: " + part_name + "(id: " + part_id + ") Remaining Quantity: " + quantity);
 
             // update [Transaction Records] table
+            Date date = new Date();
+            SimpleDateFormat ft = new SimpleDateFormat("dd/MM/yyy");
             rs = stmt.executeQuery("INSERT INTO [Transaction Records]([Part ID], [Salesperson ID], [Transaction Date])
-                                    VALUES(" + part_id + ", " + salesperson_id + ", " + current_date + ")");                      // current_date ?
-            
+                                    VALUES(" + part_id + ", " + salesperson_id + ", " + ft.format(date) + ")");
         }
         else{
             System.out.println("The part is sold out!!");
