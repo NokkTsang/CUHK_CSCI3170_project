@@ -2,7 +2,6 @@ import java.util.Scanner;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import javax.print.DocPrintJob;
 
 public class Salesperson {
 
