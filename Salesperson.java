@@ -2,6 +2,7 @@ import java.util.Scanner;
 import java.sql.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.print.DocPrintJob;
 
 public class Salesperson {
 
@@ -70,7 +71,7 @@ public class Salesperson {
         ResultSet rs;
         rs = stmt.executeQuery("SELECT [Part Available Quantity] FROM Part
                                 WHERE [Part ID] = " + part_id);
-        int quantity;
+        int quantity = 0;
         while (rs.next()){
             quantity = rs.getInt("[Part Available Quantity]");
         }
@@ -121,6 +122,19 @@ public class Salesperson {
                                     AND Part.[Part Manufacturer ID] = Manufacturer.[Manufacturer ID]
                                     AND Part.[Part Category ID] = Category.[Category ID]
                                     ORDER BY [Part Price] ASC");
+            int id; String pname; String mname; String cname; int q; int w; int p;
+            System.out.println("| ID | Name | Manufacturer | Category | Quantity | Warranty | Price |");
+            while (rs.next()) {
+                id = rs.getInt("ID");
+                pname = rs.getString("Name");
+                mname = rs.getString("Manufacturer");
+                cname = rs.getString("Category");
+                q = rs.getInt("Quantity");
+                w = rs.getInt("Warranty");
+                p = rs.getInt("Price");
+                System.out.println("| " + id + " | " + pname + " | " + mname + " | " + cname + " | " + q + " | " + w + " | " + p + " |");
+            }
+            System.out.print("End of Query");
         }
         if(order == 2){       //descending
             rs = stmt.executeQuery("SELECT [Part ID] AS ID, [Part Name] AS Name, [Manufacturer Name] AS Manufacturer, [Category Name] AS Category, [Part Available Quantity] AS Quantity, [Part Warranty] AS Warranty, [Part Price] AS Price
@@ -129,6 +143,19 @@ public class Salesperson {
                                     AND Part.[Part Manufacturer ID] = Manufacturer.[Manufacturer ID]
                                     AND Part.[Part Category ID] = Category.[Category ID]
                                     ORDER BY [Part Price] DESC");
+            int id; String pname; String mname; String cname; int q; int w; int p;
+            System.out.println("| ID | Name | Manufacturer | Category | Quantity | Warranty | Price |");
+            while (rs.next()) {
+                id = rs.getInt("ID");
+                pname = rs.getString("Name");
+                mname = rs.getString("Manufacturer");
+                cname = rs.getString("Category");
+                q = rs.getInt("Quantity");
+                w = rs.getInt("Warranty");
+                p = rs.getInt("Price");
+                System.out.println("| " + id + " | " + pname + " | " + mname + " | " + cname + " | " + q + " | " + w + " | " + p + " |");
+            }
+            System.out.print("End of Query");
         }
         stmt.close();
         rs.close();
@@ -154,6 +181,19 @@ public class Salesperson {
                                     AND Part.[Part Manufacturer ID] = Manufacturer.[Manufacturer ID]
                                     AND Part.[Part Category ID] = Category.[Category ID]
                                     ORDER BY [Part Price] ASC");
+            int id; String pname; String mname; String cname; int q; int w; int p;
+            System.out.println("| ID | Name | Manufacturer | Category | Quantity | Warranty | Price |");
+            while (rs.next()) {
+                id = rs.getInt("ID");
+                pname = rs.getString("Name");
+                mname = rs.getString("Manufacturer");
+                cname = rs.getString("Category");
+                q = rs.getInt("Quantity");
+                w = rs.getInt("Warranty");
+                p = rs.getInt("Price");
+                System.out.println("| " + id + " | " + pname + " | " + mname + " | " + cname + " | " + q + " | " + w + " | " + p + " |");
+            }
+            System.out.print("End of Query");
         }
         if(order == 2){       //descending
             rs = stmt.executeQuery("SELECT [Part ID] AS ID, [Part Name] AS Name, [Manufacturer Name] AS Manufacturer, [Category Name] AS Category, [Part Available Quantity] AS Quantity, [Part Warranty] AS Warranty, [Part Price] AS Price
@@ -162,6 +202,19 @@ public class Salesperson {
                                     AND Part.[Part Manufacturer ID] = Manufacturer.[Manufacturer ID]
                                     AND Part.[Part Category ID] = Category.[Category ID]
                                     ORDER BY [Part Price] DESC");
+            int id; String pname; String mname; String cname; int q; int w; int p;
+            System.out.println("| ID | Name | Manufacturer | Category | Quantity | Warranty | Price |");
+            while (rs.next()) {
+                id = rs.getInt("ID");
+                pname = rs.getString("Name");
+                mname = rs.getString("Manufacturer");
+                cname = rs.getString("Category");
+                q = rs.getInt("Quantity");
+                w = rs.getInt("Warranty");
+                p = rs.getInt("Price");
+                System.out.println("| " + id + " | " + pname + " | " + mname + " | " + cname + " | " + q + " | " + w + " | " + p + " |");
+            }
+            System.out.print("End of Query");
         }
         stmt.close();
         rs.close();
