@@ -29,7 +29,7 @@ JOIN (
     )
     GROUP BY sID
 ) t ON s.sID = t.sID
-ORDER BY t."Number of Transactions" DESC;
+ORDER BY t.sID DESC;
 
 /* Count the number of transaction records of each salesperson within a given range on years of experience */
 
