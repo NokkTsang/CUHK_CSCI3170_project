@@ -1,5 +1,5 @@
-import java.util.Scanner;
-import java.sql.*;
+//import java.util.Scanner;
+//import java.sql.*;
 
 public class Salesperson {
 
@@ -115,12 +115,16 @@ public class Salesperson {
             rs = stmt.executeQuery("SELECT [Part ID] AS ID, [Part Name] AS Name, [Manufacturer Name] AS Manufacturer, [Category Name] AS Category, [Part Available Quantity] AS Quantity, [Part Warranty] AS Warranty, [Part Price] AS Price
                                     FROM Part, Manufacturer, Category
                                     WHERE [Part Name] = '" + keyword + "'
+                                    AND Part.[Part Manufacturer ID] = Manufacturer.[Manufacturer ID]
+                                    AND Part.[Part Category ID] = Category.[Category ID]
                                     ORDER BY [Part Price] ASC");
         }
         if(order == 2){       //descending
             rs = stmt.executeQuery("SELECT [Part ID] AS ID, [Part Name] AS Name, [Manufacturer Name] AS Manufacturer, [Category Name] AS Category, [Part Available Quantity] AS Quantity, [Part Warranty] AS Warranty, [Part Price] AS Price
                                     FROM Part, Manufacturer, Category
                                     WHERE [Part Name] = '" + keyword + "'
+                                    AND Part.[Part Manufacturer ID] = Manufacturer.[Manufacturer ID]
+                                    AND Part.[Part Category ID] = Category.[Category ID]
                                     ORDER BY [Part Price] DESC");
         }
         stmt.close();
@@ -144,12 +148,16 @@ public class Salesperson {
             rs = stmt.executeQuery("SELECT [Part ID] AS ID, [Part Name] AS Name, [Manufacturer Name] AS Manufacturer, [Category Name] AS Category, [Part Available Quantity] AS Quantity, [Part Warranty] AS Warranty, [Part Price] AS Price
                                     FROM Part, Manufacturer, Category
                                     WHERE [Manufacturer Name] = '" + keyword + "'
+                                    AND Part.[Part Manufacturer ID] = Manufacturer.[Manufacturer ID]
+                                    AND Part.[Part Category ID] = Category.[Category ID]
                                     ORDER BY [Part Price] ASC");
         }
         if(order == 2){       //descending
             rs = stmt.executeQuery("SELECT [Part ID] AS ID, [Part Name] AS Name, [Manufacturer Name] AS Manufacturer, [Category Name] AS Category, [Part Available Quantity] AS Quantity, [Part Warranty] AS Warranty, [Part Price] AS Price
                                     FROM Part, Manufacturer, Category
                                     WHERE [Manufacturer Name] = '" + keyword + "'
+                                    AND Part.[Part Manufacturer ID] = Manufacturer.[Manufacturer ID]
+                                    AND Part.[Part Category ID] = Category.[Category ID]
                                     ORDER BY [Part Price] DESC");
         }
         stmt.close();
