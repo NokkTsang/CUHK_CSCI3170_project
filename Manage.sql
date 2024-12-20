@@ -25,7 +25,7 @@ JOIN (
     WHERE sID IN (
         SELECT sID 
         FROM salesperson 
-        WHERE sExperience >= 1 AND sExperience <= 3
+        WHERE sExperience >= ? AND sExperience <= ?
     )
     GROUP BY sID
 ) t ON s.sID = t.sID
@@ -33,27 +33,30 @@ ORDER BY t.sID DESC;
 
 /* Count the number of transaction records of each salesperson within a given range on years of experience */
 
-SELECT m.mID AS "Manufacturer ID", 
-       m.mName AS "Manufacturer Name", 
-       s."Total Sales Value"
-FROM manufacturer m
+SELECT m.mID AS "Manufacturer ID", m.mName AS "Manufacturer Name", SUM(s.a) AS "Total Sales Value"
+FROM part p
+JOIN manufacturer m ON p.mID = m.mID
 JOIN (
-    SELECT mID, SUM(pPrice) AS "Total Sales Value"
-    FROM part
-    GROUP BY mID
-) s ON m.mID = s.mID
-ORDER BY s."Total Sales Value" DESC;
+    SELECT t.pID, SUM(p.pPrice) AS a
+    FROM part p
+    JOIN transaction t ON p.pID = t.pID
+    GROUP BY t.pID
+) s ON p.pID = s.pID
+GROUP BY m.mID, m.mName
+ORDER BY "Total Sales Value" DESC;
+
 
 /*  Sort and list the manufacturers in descending order of total sales value */
 
 SELECT p.pID AS "Part ID", 
        p.pName AS "Part Name", 
-       COUNT(t.tID) AS "Number of Transactions"
+       COUNT(t.tID) AS "No. of Transactions"
 FROM part p
 LEFT JOIN transaction t ON p.pID = t.pID
 GROUP BY p.pID, p.pName
 ORDER BY COUNT(t.tID) DESC
-FETCH FIRST x ROWS ONLY;
+FETCH FIRST N ROWS ONLY;
 
 /* Show the N most popular parts */
+
 
