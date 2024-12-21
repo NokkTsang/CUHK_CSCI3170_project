@@ -24,12 +24,16 @@ public class Administrator {
     }
 
     public void jumpToAdministratorMenu(){
-        administratorMenuDisplay();
-        Scanner choiceOfAdministrator = new Scanner(System.in);
-        int choiceAdministratorMenu = choiceOfAdministrator.nextInt();
-        do{
+        while(true){
+            administratorMenuDisplay();
+            Scanner choiceOfAdministrator = new Scanner(System.in);
+            int choiceAdministratorMenu = choiceOfAdministrator.nextInt();
+            if (choiceAdministratorMenu == 5) {
+                System.out.println("Returning to the main menu");
+                return;
+            }
             administratorMenu(choiceAdministratorMenu);
-        }while(choiceAdministratorMenu != 5);
+        }
     }
 
     public void administratorMenu(int choiceAdministratorMenu){
@@ -138,9 +142,6 @@ public class Administrator {
             } catch (Exception e) {
                 System.err.println("Something went wrong connection!");
             }
-        } else if (choiceAdministratorMenu == 5) {
-            System.out.println("Returning to the main menu");
-            //go back to main menu
         }
     }
 
