@@ -68,7 +68,7 @@ public class Salesperson {
         
         Statement stmt = conn.createStatement();                              // conn for connection in main file
         ResultSet rs;
-        rs = stmt.executeQuery("SELECT pAvailableQuantity FROM Part
+        rs = stmt.executeQuery("SELECT pAvailableQuantity FROM part
                                 WHERE pID = " + part_id);
         int quantity = 0;
         while (rs.next()){
@@ -76,11 +76,11 @@ public class Salesperson {
         }
         if(quantity > 0){
             // update [Part] table
-            rs = stmt.executeQuery("UPDATE Part
+            rs = stmt.executeQuery("UPDATE part
                                     SET pAvailableQuantity = " + (quantity - 1) +
                                     "WHERE pID = " + part_id);
             rs = stmt.executeQuery("SELECT pName, pAvailableQuantity
-                                    FROM Part
+                                    FROM part
                                     WHERE pID = " + part_id);
             while (rs.next()){
                 part_name = rs.getString("pName");
@@ -116,10 +116,10 @@ public class Salesperson {
         ResultSet rs;
         if(order == 1){       //ascending
             rs = stmt.executeQuery("SELECT pID AS ID, pName AS Name, mName AS Manufacturer, cName AS Category, pAvailableQuantity AS Quantity, pWarrantyPeriod AS Warranty, pPrice AS Price
-                                    FROM Part, Manufacturer, Category
+                                    FROM part, manufacturer, category
                                     WHERE pName = '" + keyword + "'
-                                    AND Part.mID = Manufacturer.mID
-                                    AND Part.cID = Category.cID
+                                    AND part.mID = manufacturer.mID
+                                    AND part.cID = category.cID
                                     ORDER BY pPrice ASC");
             int id; String pname; String mname; String cname; int q; int w; int p;
             System.out.println("| ID | Name | Manufacturer | Category | Quantity | Warranty | Price |");
@@ -137,10 +137,10 @@ public class Salesperson {
         }
         if(order == 2){       //descending
             rs = stmt.executeQuery("SELECT pID AS ID, pName AS Name, mName AS Manufacturer, cName AS Category, pAvailableQuantity AS Quantity, pWarrantyPeriod AS Warranty, pPrice AS Price
-                                    FROM Part, Manufacturer, Category
+                                    FROM part, manufacturer, category
                                     WHERE pName = '" + keyword + "'
-                                    AND Part.mID = Manufacturer.mID
-                                    AND Part.cID = Category.cID
+                                    AND part.mID = manufacturer.mID
+                                    AND part.cID = category.cID
                                     ORDER BY pPrice DESC");
             int id; String pname; String mname; String cname; int q; int w; int p;
             System.out.println("| ID | Name | Manufacturer | Category | Quantity | Warranty | Price |");
@@ -175,10 +175,10 @@ public class Salesperson {
         ResultSet rs;
         if(order == 1){       //ascending
             rs = stmt.executeQuery("SELECT pID AS ID, pName AS Name, mName AS Manufacturer, cName AS Category, pAvailableQuantity AS Quantity, pWarrantyPeriod AS Warranty, pPrice AS Price
-                                    FROM Part, Manufacturer, Category
+                                    FROM part, manufacturer, category
                                     WHERE mName = '" + keyword + "'
-                                    AND Part.mID = Manufacturer.mID
-                                    AND Part.cID = Category.cID
+                                    AND part.mID = manufacturer.mID
+                                    AND part.cID = category.cID
                                     ORDER BY pPrice ASC");
             int id; String pname; String mname; String cname; int q; int w; int p;
             System.out.println("| ID | Name | Manufacturer | Category | Quantity | Warranty | Price |");
@@ -196,10 +196,10 @@ public class Salesperson {
         }
         if(order == 2){       //descending
             rs = stmt.executeQuery("SELECT pID AS ID, pName AS Name, mName AS Manufacturer, cName AS Category, pAvailableQuantity AS Quantity, pWarrantyPeriod AS Warranty, pPrice AS Price
-                                    FROM Part, Manufacturer, Category
+                                    FROM part, manufacturer, category
                                     WHERE mName = '" + keyword + "'
-                                    AND Part.mID = Manufacturer.mID
-                                    AND Part.cID = Category.cID
+                                    AND part.mID = manufacturer.mID
+                                    AND part.cID = category.cID
                                     ORDER BY pPrice DESC");
             int id; String pname; String mname; String cname; int q; int w; int p;
             System.out.println("| ID | Name | Manufacturer | Category | Quantity | Warranty | Price |");
