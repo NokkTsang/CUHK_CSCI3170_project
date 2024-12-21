@@ -156,6 +156,11 @@ public class administrator {
                 String query = String.format("select * from %s", tableName); // do not add a semi-colon here
                 System.out.println(query);
                 ResultSet rs = stmt.executeQuery(query);
+                //show the results
+                while (rs.next()) {
+                    String result = rs.getString("table");
+                    System.out.println(result);
+                }
 
             } catch (Exception e) {
                 System.err.println("Something went wrong connection!");
