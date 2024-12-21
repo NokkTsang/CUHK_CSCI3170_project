@@ -77,7 +77,7 @@ public class administrator {
             }
             System.out.println("Done! Database is initialized!");
         } else if (choiceAdministratorMenu == 2) {
-            System.out.println("Processing... Done!");
+            System.out.print("Processing...");
             //try sql query
             try {
                 Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//db18.cse.cuhk.edu.hk:1521/oradb.cse.cuhk.edu.hk",
@@ -104,7 +104,7 @@ public class administrator {
             } catch (Exception e) {
                 System.err.println("Something went wrong connection!");
             }
-            System.out.println("Database is removed!");
+            System.out.println("Done! Database is removed!");
         } else if (choiceAdministratorMenu == 3) {
             System.out.println("Type in the Source Data Folder Path: ");
             Scanner path = new Scanner(System.in);
