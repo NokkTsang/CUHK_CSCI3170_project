@@ -118,6 +118,23 @@ public class administrator {
                 File[] files = dir.listFiles();
                 // fetch all file in the folder
                 try{
+                    Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//db18.cse.cuhk.edu.hk:1521/oradb.cse.cuhk.edu.hk",
+                            "h079", "IgZadNes");
+                    Statement stmt = conn.createStatement();
+                    String query1 = String.format("LOAD DATA INFILE %s INTO TABLE category", files[0]);
+                    String query2 = String.format("LOAD DATA INFILE %s INTO TABLE manufacturer", files[1]);
+                    String query3 = String.format("LOAD DATA INFILE %s INTO TABLE part", files[2]);
+                    String query4 = String.format("LOAD DATA INFILE %s INTO TABLE salesperson", files[3]);
+                    String query5 = String.format("LOAD DATA INFILE %s INTO TABLE transaction", files[4]);
+
+                    stmt.executeUpdate(query1);
+                    stmt.executeUpdate(query2);
+                    stmt.executeUpdate(query3);
+                    stmt.executeUpdate(query4);
+                    stmt.executeUpdate(query5);
+
+                    stmt.close();
+                    conn.close();
 
                 } catch (Exception e){
                     System.err.println("Something went wrong when inserting data files!");
