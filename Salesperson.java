@@ -5,11 +5,17 @@ import java.util.Date;
 
 public class Salesperson {
 
+    private Connection conn;
+
     private int Salesperson_ID;
     private String Salesperson_Name;
     private String Salesperson_Address;
     private int Salesperson_Phone_Number;
     private int Salesperson_Experience;
+
+    public Salesperson(Connection conn) {
+        this.conn = conn;
+    }
 
     public Salesperson (int Salesperson_ID, String Salesperson_Name, String Salesperson_Address, int Salesperson_Phone_Number, int Salesperson_Experience){
         this.Salesperson_ID = Salesperson_ID;
@@ -19,7 +25,7 @@ public class Salesperson {
         this.Salesperson_Experience = Salesperson_Experience;
     }
 
-    public static void run() {
+    public void run() {
         int choice;
         System.out.println("-----Operations for saleperson menu-----");
         System.out.println("Which kinds of operation would you like to perform?");
@@ -40,7 +46,7 @@ public class Salesperson {
         }
     }
 
-    public static void search_for_parts(){
+    private void search_for_parts(){
         int choice;
         System.out.println("Choose the Search criterion");
         System.out.println("1. Part Name");
@@ -56,7 +62,7 @@ public class Salesperson {
         }
     }
 
-    public static void sell_a_part(){
+    private void sell_a_part(){
         int part_id = 0;
         int salesperson_id = 0;
         String part_name = "";
@@ -66,7 +72,7 @@ public class Salesperson {
         System.out.println("Enter the Salesperson ID: ");
         salesperson_id = scan.nextInt();
         
-        Statement stmt = conn.createStatement();                              // conn for connection in main file
+        Statement stmt = conn.createStatement();
         ResultSet rs;
         rs = stmt.executeQuery("SELECT pAvailableQuantity FROM part
                                 WHERE pID = " + part_id);
@@ -101,7 +107,7 @@ public class Salesperson {
         rs.close();
     }
 
-    public static void search_by_part(){
+    private void search_by_part(){
         String keyword = "";
         int order = 0;
         System.out.print("Type in the Search Keyword: ");
@@ -112,7 +118,7 @@ public class Salesperson {
         System.out.println("2. By price, descending order");
         System.out.print("Choose the search criterion: ");
         order = scan.nextInt();
-        Statement stmt = conn.createStatement();                                       // conn for connection in main file
+        Statement stmt = conn.createStatement();
         ResultSet rs;
         if(order == 1){       //ascending
             rs = stmt.executeQuery("SELECT pID AS ID, pName AS Name, mName AS Manufacturer, cName AS Category, pAvailableQuantity AS Quantity, pWarrantyPeriod AS Warranty, pPrice AS Price
@@ -160,7 +166,7 @@ public class Salesperson {
         rs.close();
     }
 
-    public static void search_by_manufacturer(){
+    private void search_by_manufacturer(){
         String keyword = "";
         int order = 0;
         System.out.print("Type in the Search Keyword: ");
@@ -171,7 +177,7 @@ public class Salesperson {
         System.out.println("2. By price, descending order");
         System.out.print("Choose the search criterion: ");
         order = scan.nextInt();
-        Statement stmt = conn.createStatement();                                           // conn for connection in main file
+        Statement stmt = conn.createStatement();
         ResultSet rs;
         if(order == 1){       //ascending
             rs = stmt.executeQuery("SELECT pID AS ID, pName AS Name, mName AS Manufacturer, cName AS Category, pAvailableQuantity AS Quantity, pWarrantyPeriod AS Warranty, pPrice AS Price
