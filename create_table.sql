@@ -14,10 +14,10 @@ create table part (
     pID integer not null primary key,
     pName varchar(20) not null,
     pPrice integer not null,
+    mID integer not null references manufacturer(mID),
+    cID integer not null references category(cID)，
     pWarrantyPeriod integer not null,
     pAvailableQuantity integer not null,
-    mID integer not null references manufacturer(mID),
-    cID integer not null references category(cID)
 );
 
 create table salesperson (
