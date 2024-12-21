@@ -9,7 +9,7 @@ public class administrator {
     public static void mainManuDisplay(){
         System.out.println("Welcome to the sales system!");
         String mainManu = "-----Main menu-----\n" +
-                "What kinds of operation would you like to perform?" +
+                "What kinds of operation would you like to perform?\n" +
                 "1. Operations for administrator\n" +
                 "2. Operations for salesperson\n" +
                 "3. Operations for manager\n" +
@@ -31,22 +31,20 @@ public class administrator {
     }
 
     public static void mainMenu(int choice){
-        if(choice == 4){
+        if(choice == 4) {
             System.exit(1);
         }
-        do {
-            if (choice == 1) {
-                Scanner choiceOfAdministrator = new Scanner(System.in);
-                int choiceAdministratorMenu = choiceOfAdministrator.nextInt();
-                do{
-                    administratorMenu(choiceAdministratorMenu);
-                }while(choiceAdministratorMenu != 5);
-            }
-        }while(choice != 4);
+        if (choice == 1) {
+            administratorMenuDisplay();
+            Scanner choiceOfAdministrator = new Scanner(System.in);
+            int choiceAdministratorMenu = choiceOfAdministrator.nextInt();
+            do{
+                administratorMenu(choiceAdministratorMenu);
+            }while(choiceAdministratorMenu != 5);
+        }
     }
 
     public static void administratorMenu(int choiceAdministratorMenu){
-        administratorMenuDisplay();
         if (choiceAdministratorMenu == 1) {
             System.out.print("Processing... ");
             //try sql query
@@ -172,8 +170,6 @@ public class administrator {
         mainManuDisplay();
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
-        while(choice < 4) {
-            mainMenu(choice);
-        }
+        mainMenu(choice);
     }
 }
