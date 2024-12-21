@@ -5,7 +5,7 @@ import java.sql.*;
 import java.util.Scanner;
 
 public class Administrator {
-    private Connection conn;
+    private final Connection conn;
 
     public Administrator(Connection conn) {
         this.conn = conn;
@@ -127,17 +127,73 @@ public class Administrator {
             Scanner tableScan = new Scanner(System.in);
             String tableName = tableScan.nextLine();
             System.out.println("Content of table : \n");
+            switch (tableName) {
+                case "category" -> System.out.println("| cID | cName |");
+                case "manufacturer" -> System.out.println("| mID | mName | mAddress | mPhoneNumber |");
+                case "part" ->
+                        System.out.println("| pID | pName | pPrice | pWarrantyPeriod | pAvailableQuantity | mID | cID |");
+                case "salesperson" -> System.out.println("| sID | sName | sAddress | sPhoneNumber | sExperience |");
+                case "transaction" -> System.out.println("| tID | pID | sID| tDate |");
+            }
             //try sql query
             try {
                 Statement stmt = conn.createStatement();
-                String query = String.format("select * from %s", tableName); // do not add a semi-colon here
-                System.out.println(query);
+                String query = String.format("select * from %s", tableName);
                 ResultSet rs = stmt.executeQuery(query);
-                //show the results
-                while (rs.next()) {
-                    String result = rs.getString("table");
-                    System.out.println(result);
+                switch (tableName) {
+                    case "category" -> {
+                        while (rs.next()) {
+                            int cID = rs.getInt("cID");
+                            String cName = rs.getString("cName");
+                            System.out.println(cID + "\t\t" + cName);
+                        }
+                    }
+                    case "manufacturer" -> {
+                        while (rs.next()) {
+                            int mID = rs.getInt("mID");
+                            String mName = rs.getString("mName");
+                            String mAddress = rs.getString("mAddress");
+                            int mPhoneNumber = rs.getInt("mPhoneNumber");
+                            System.out.println(mID + "\t\t" + mName + "\t\t" + mAddress + "\t\t" + mPhoneNumber);
+                        }
+                    }
+                    case "part" -> {
+                        while (rs.next()) {
+                            int pID = rs.getInt("pID");
+                            String pName = rs.getString("pName");
+                            int pPrice = rs.getInt("pPrice");
+                            int mID = rs.getInt("mID");
+                            int cID = rs.getInt("cID");
+                            int pWarrantyPeriod = rs.getInt("pWarrantyPeriod");
+                            int pAvailableQuantity = rs.getInt("pAvailableQuantity");
+
+                            System.out.println(pID + "\t\t" + pName + "\t\t" + pPrice + "\t\t" + mID + "\t\t"
+                                    + cID + "\t\t" + pWarrantyPeriod + "\t\t" + pAvailableQuantity);
+                        }
+                    }
+                    case "salesperson" -> {
+                        while (rs.next()) {
+                            int sID = rs.getInt("sID");
+                            String sName = rs.getString("sName");
+                            String sAddress = rs.getString("sAddress");
+                            int sPhoneNumber = rs.getInt("sPhoneNumber");
+                            int sExperience = rs.getInt("sExperience");
+                            System.out.println(sID + "\t\t" + sName + "\t\t" + sAddress + "\t\t" + sPhoneNumber + "\t\t"
+                                    + sExperience);
+                        }
+                    }
+                    case "transaction" -> {
+                        while (rs.next()) {
+                            int tID = rs.getInt("tID");
+                            int pID = rs.getInt("pID");
+                            int sID = rs.getInt("sID");
+                            String tDate = rs.getString("tDate");
+                        }
+                        System.out.println("| tID | pID | sID | tDate |");
+                    }
                 }
+                //show the results
+
 
             } catch (Exception e) {
                 System.err.println("Something went wrong connection!");
