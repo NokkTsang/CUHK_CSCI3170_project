@@ -32,6 +32,6 @@ create table transaction (
     tID integer not null primary key,
     pID integer not null references part(pID),
     sID integer not null references salesperson(sID),
-    tDate integer not null
+    tDate varchar(20) not null
 );
 
