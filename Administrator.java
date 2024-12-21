@@ -187,9 +187,9 @@ public class Administrator {
                             int tID = rs.getInt("tID");
                             int pID = rs.getInt("pID");
                             int sID = rs.getInt("sID");
-                            String tDate = rs.getString("tDate");
+                            Date tDate = rs.getDate("tDate");
+                            System.out.println(tID + "\t\t" + pID + "\t\t" + sID + "\t\t" + tDate);
                         }
-                        System.out.println("| tID | pID | sID | tDate |");
                     }
                 }
                 //show the results
