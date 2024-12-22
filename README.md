@@ -9,10 +9,11 @@
 
 ## File Discription
 - SQL: a file contains all sql statements for the system.
-- Administrator.java:(created by Peng Minqi) a java file handle with administrator operations.
-- Main.java: a main file for the system.
-- Manager.java: a java file handle with manager operations.
-- Salesperson.java: a java file handle with salesperson operations.
+- Main.java: a main file provides the operarion of system.
+- Administrator.java:a java file provides administrator functions.
+- Manager.java: a java file provides manager functions.
+- Salesperson.java: a java file provides salesperson functions.
 
 ## Methods of Compilation and Execution
-Run Main.java directly.
+- Connect to the Database.
+- Run Main.java directly.
