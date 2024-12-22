@@ -37,6 +37,39 @@ public class Administrator {
         }
     }
 
+    private static String generateInsertSQL(String tableName, String columns){
+        String[] columnsArray = columns.split(",");
+        StringBuilder placeholders = new StringBuilder();
+        for (int i = 0; i < columnsArray.length; i++) {
+            placeholders.append("?");
+            if (i < columnsArray.length - 1) {
+                placeholders.append(",");
+            }
+        }
+        return "INSERT INTO " + tableName + " (" + columns + ") values ('" + placeholders.toString() + "')";
+    }
+
+    public void importTxtToDatabase(String tableName, String columns, String filename, String delimiter){
+        String sql = generateInsertSQL(tableName, columns);
+        try{
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+            PreparedStatement statement = conn.prepareStatement(sql);
+
+            String lines;
+            while ((lines = br.readLine()) != null) {
+                String[] data = lines.split(delimiter);
+
+                for (int i = 0; i < data.length; i++) {
+                    statement.setString(i + 1, data[i]);
+                }
+
+                statement.executeUpdate();
+            }
+        } catch (Exception e){
+            System.err.println("Something went wrong when importing txt to database!");
+        }
+    }
+
     public void administratorMenu(int choiceAdministratorMenu){
         if (choiceAdministratorMenu == 1) {
             System.out.print("Processing...");
@@ -45,7 +78,7 @@ public class Administrator {
                 //System.out.println("Connected to the database.");
 
                 //read .sql file
-                BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\jackk\\Documents\\learing materials\\CSCI3170\\CSCI3170project\\src\\create_table.sql"));
+                BufferedReader reader = new BufferedReader(new FileReader("create_table.sql"));
                 String line;
                 StringBuilder sql = new StringBuilder();
                 while((line = reader.readLine()) != null) {
@@ -72,7 +105,7 @@ public class Administrator {
                 //System.out.println("Connected to the database.");
 
                 //read .sql file
-                BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\jackk\\Documents\\learing materials\\CSCI3170\\CSCI3170project\\src\\drop_table.sql"));
+                BufferedReader reader = new BufferedReader(new FileReader("drop_table.sql"));
                 String line;
                 StringBuilder sql = new StringBuilder();
                 while((line = reader.readLine()) != null) {
@@ -98,28 +131,36 @@ public class Administrator {
             String sourcePath = path.nextLine();
             System.out.print("Processing...");
             //try sql query
-            File dir = new File(sourcePath);
-            File[] files = dir.listFiles();
-            // fetch all file in the folder
             try{
-                Statement stmt = conn.createStatement();
-                String query1 = String.format("LOAD DATA INFILE %s INTO TABLE category", files[0]);
-                String query2 = String.format("LOAD DATA INFILE %s INTO TABLE manufacturer", files[1]);
-                String query3 = String.format("LOAD DATA INFILE %s INTO TABLE part", files[2]);
-                String query4 = String.format("LOAD DATA INFILE %s INTO TABLE salesperson", files[3]);
-                String query5 = String.format("LOAD DATA INFILE %s INTO TABLE transaction", files[4]);
+                File dir = new File(sourcePath);
+                File[] filesList = dir.listFiles();
+                // fetch all file in the folder
+                try{
+                    String TableName1 = "category";
+                    String TableName2 = "manufacturer";
+                    String TableName3 = "part";
+                    String TableName4 = "salesperson";
+                    String TableName5 = "transaction";
 
-                stmt.executeUpdate(query1);
-                stmt.executeUpdate(query2);
-                stmt.executeUpdate(query3);
-                stmt.executeUpdate(query4);
-                stmt.executeUpdate(query5);
-                System.out.println("Done! Data is inputted to the database!");
+                    String columns1 = "cID,cName";
+                    String columns2 = "mID,mName,mAddress,mPhoneNumber";
+                    String columns3 = "pID,pName,pPrice,mID,cID,pWarrantyPeriod,pAvailableQuantity";
+                    String columns4 = "sID,sName,sAddress,sPhoneNumber,sExperience";
+                    String columns5 = "tID,pID,sID,tDate";
 
-            } catch (Exception e){
-                System.err.println("Something went wrong when inserting data files!");
-                e.printStackTrace();
+                    importTxtToDatabase(TableName1,columns1,filesList[0].getAbsolutePath(),"\t");
+                    importTxtToDatabase(TableName2,columns2,filesList[1].getAbsolutePath(),"\t");
+                    importTxtToDatabase(TableName3,columns3,filesList[2].getAbsolutePath(),"\t");
+                    importTxtToDatabase(TableName4,columns4,filesList[3].getAbsolutePath(),"\t");
+                    importTxtToDatabase(TableName5,columns5,filesList[4].getAbsolutePath(),"\t");
+
+                } catch (Exception e){
+                    System.err.println("Something went wrong when inserting data files!");
+                }
+            }catch (Exception e){
+                System.err.println("Something went wrong!");
             }
+            System.out.println("Done! Data is inputted to the database!");
         } else if (choiceAdministratorMenu == 4) {
             System.out.print("Which table would you like to show: ");
             //scan
