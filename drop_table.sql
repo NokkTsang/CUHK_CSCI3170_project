@@ -1,9 +1,9 @@
-drop table category;
-
-drop table manufacturer;
-
-drop table part;
+drop table transaction;
 
 drop table salesperson;
 
-drop table transaction;
+drop table part;
+
+drop table manufacturer;
+
+drop table category;
