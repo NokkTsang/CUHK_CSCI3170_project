@@ -30,7 +30,7 @@ public class Main {
                 case "1":
                     try {
                         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//db18.cse.cuhk.edu.hk:1521/oradb.cse.cuhk.edu.hk",
-                                "h128", "TwuOllEr");
+                                "username", "password");
                         Administrator administrator = new Administrator(conn);
                         administrator.jumpToAdministratorMenu();
                         System.out.println();
@@ -41,7 +41,7 @@ public class Main {
                 case "2":
                     try {
                         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//db18.cse.cuhk.edu.hk:1521/oradb.cse.cuhk.edu.hk",
-                                "h128", "TwuOllEr");
+                                "username", "password");
                         Salesperson salesperson = new Salesperson(conn);
                         salesperson.run();
                     } catch (Exception e) {
@@ -51,7 +51,7 @@ public class Main {
                 case "3":
                     try {
                         Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//db18.cse.cuhk.edu.hk:1521/oradb.cse.cuhk.edu.hk",
-                                "h128", "TwuOllEr");
+                                "username", "password");
                         Manager manager = new Manager(conn);
                         manager.showMenu();
                         System.out.println();
