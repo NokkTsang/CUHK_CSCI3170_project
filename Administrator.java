@@ -19,8 +19,9 @@ public class Administrator {
                 "3. Load from datafile\n" +
                 "4. Show content of a table\n" +
                 "5. Return to the main menu\n";
-        System.out.println(operationAdministrator);
-        System.out.println("Enter Your Choice: ");
+        System.out.println();
+        System.out.print(operationAdministrator);
+        System.out.print("Enter Your Choice: ");
     }
 
     public void jumpToAdministratorMenu(){
@@ -90,7 +91,7 @@ public class Administrator {
             }
             System.out.println("Database is removed!");
         } else if (choiceAdministratorMenu == 3) {
-            System.out.println("Type in the Source Data Folder Path: ");
+            System.out.print("Type in the Source Data Folder Path: ");
             Scanner path = new Scanner(System.in);
             String sourcePath = path.nextLine();
             System.out.print("Processing...");
@@ -122,18 +123,17 @@ public class Administrator {
 
             System.out.println("Done! Data is inputted to the database!");
         } else if (choiceAdministratorMenu == 4) {
-            System.out.println("Which table would you like to show: ");
+            System.out.print("Which table would you like to show: ");
             //scan
             Scanner tableScan = new Scanner(System.in);
             String tableName = tableScan.nextLine();
-            System.out.println("Content of table : \n");
+            System.out.printf("Content of table %s: \n",tableName);
             switch (tableName) {
-                case "category" -> System.out.println("| cID | cName |");
-                case "manufacturer" -> System.out.println("| mID | mName | mAddress | mPhoneNumber |");
-                case "part" ->
-                        System.out.println("| pID | pName | pPrice | pWarrantyPeriod | pAvailableQuantity | mID | cID |");
-                case "salesperson" -> System.out.println("| sID | sName | sAddress | sPhoneNumber | sExperience |");
-                case "transaction" -> System.out.println("| tID | pID | sID| tDate |");
+                case "category" -> System.out.print("| c_id | c_name |\n");
+                case "manufacturer" -> System.out.print("| m_id | m_name | m_address | m_phone_number |\n");
+                case "part" -> System.out.print("| p_id | p_name | p_price | m_id | c_id | p_warranty | p_quantity |\n");
+                case "salesperson" -> System.out.print("| s_id | s_name | s_address | s_phone_number | s_experience |\n");
+                case "transaction" -> System.out.print("| t_id | p_id | s_id | t_date |\n");
             }
             //try sql query
             try {
@@ -145,8 +145,9 @@ public class Administrator {
                         while (rs.next()) {
                             int cID = rs.getInt("cID");
                             String cName = rs.getString("cName");
-                            System.out.println(cID + "\t\t" + cName);
+                            System.out.printf("| %d | %s |\n", cID, cName);
                         }
+                        System.out.println("End of Query");
                     }
                     case "manufacturer" -> {
                         while (rs.next()) {
@@ -154,8 +155,9 @@ public class Administrator {
                             String mName = rs.getString("mName");
                             String mAddress = rs.getString("mAddress");
                             int mPhoneNumber = rs.getInt("mPhoneNumber");
-                            System.out.println(mID + "\t\t" + mName + "\t\t" + mAddress + "\t\t" + mPhoneNumber);
+                            System.out.printf("| %d | %s | %s | %d |\n", mID, mName, mAddress, mPhoneNumber);
                         }
+                        System.out.println("End of Query");
                     }
                     case "part" -> {
                         while (rs.next()) {
@@ -166,10 +168,9 @@ public class Administrator {
                             int cID = rs.getInt("cID");
                             int pWarrantyPeriod = rs.getInt("pWarrantyPeriod");
                             int pAvailableQuantity = rs.getInt("pAvailableQuantity");
-
-                            System.out.println(pID + "\t\t" + pName + "\t\t" + pPrice + "\t\t" + mID + "\t\t"
-                                    + cID + "\t\t" + pWarrantyPeriod + "\t\t" + pAvailableQuantity);
+                            System.out.printf("| %d | %s | %d | %d | %d | %d | %d |\n", pID, pName, pPrice, mID, cID, pWarrantyPeriod, pAvailableQuantity);
                         }
+                        System.out.println("End of Query");
                     }
                     case "salesperson" -> {
                         while (rs.next()) {
@@ -178,18 +179,19 @@ public class Administrator {
                             String sAddress = rs.getString("sAddress");
                             int sPhoneNumber = rs.getInt("sPhoneNumber");
                             int sExperience = rs.getInt("sExperience");
-                            System.out.println(sID + "\t\t" + sName + "\t\t" + sAddress + "\t\t" + sPhoneNumber + "\t\t"
-                                    + sExperience);
+                            System.out.printf("| %d | %s | %s | %d | %d |\n", sID, sName, sAddress, sPhoneNumber, sExperience);
                         }
+                        System.out.println("End of Query");
                     }
                     case "transaction" -> {
                         while (rs.next()) {
                             int tID = rs.getInt("tID");
                             int pID = rs.getInt("pID");
                             int sID = rs.getInt("sID");
-                            Date tDate = rs.getDate("tDate");
-                            System.out.println(tID + "\t\t" + pID + "\t\t" + sID + "\t\t" + tDate);
+                            String tDate = rs.getString("tDate");
+                            System.out.printf("| %d | %d | %d | %s |\n", tID, pID, sID, tDate);
                         }
+                        System.out.println("End of Query");
                     }
                 }
                 //show the results
