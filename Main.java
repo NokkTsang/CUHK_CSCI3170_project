@@ -10,8 +10,8 @@ public class Main {
                 "2. Operations for salesperson\n" +
                 "3. Operations for manager\n" +
                 "4. Exit this program\n";
-        System.out.println(mainManu);
-        System.out.println("Enter Your Choice: ");
+        System.out.print(mainManu);
+        System.out.print("Enter Your Choice: ");
     }
 
     public static void main(String[] args) {
@@ -33,19 +33,12 @@ public class Main {
                                 "h128", "TwuOllEr");
                         Administrator administrator = new Administrator(conn);
                         administrator.jumpToAdministratorMenu();
+                        System.out.println();
                     } catch (Exception e){
                         System.err.println("Something went wrong connection!");
                     }
                     break;
                 case "2":
-                    try {
-                        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//db18.cse.cuhk.edu.hk:1521/oradb.cse.cuhk.edu.hk",
-                                "h128", "TwuOllEr");
-                        Salesperson salesperson = new Salesperson(conn);
-                        salesperson.run();
-                    } catch (Exception e) {
-                        System.err.println("Something went wrong connection!");
-                    }
                     break;
                 case "3":
                     try {
@@ -53,6 +46,7 @@ public class Main {
                                 "h128", "TwuOllEr");
                         Manager manager = new Manager(conn);
                         manager.showMenu();
+                        System.out.println();
                     } catch (Exception e) {
                         System.err.println("Something went wrong connection!");
                     }
