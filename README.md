@@ -8,10 +8,11 @@
 - Peng Minqi    1155191548
 
 ## File Discription
--
-- Administrator.java:(created by Peng Minqi) is a java file handle with administrator operations
-- create_table.sql:(created by Peng Minqi) is a sql file to create tables
-- drop_table.sql:(created by Peng Minqi) is a sql file to drop tables
+- SQL: a file contains all sql statements for the system.
+- Administrator.java:(created by Peng Minqi) a java file handle with administrator operations.
+- Main.java: a main file for the system.
+- Manager.java: a java file handle with manager operations.
+- Salesperson.java: a java file handle with salesperson operations.
 
 ## Methods of Compilation and Execution
---
+Run Main.java directly.
