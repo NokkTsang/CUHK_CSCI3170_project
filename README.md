@@ -13,7 +13,7 @@
 - Administrator.java:a java file provides administrator functions.
 - Manager.java: a java file provides manager functions.
 - Salesperson.java: a java file provides salesperson functions.
-
+- project-files: Includes the description document of the sales system, ER diagram, and data.
 ## Methods of Compilation and Execution
 - Connect to cuhk cse vpn
 - Establish connection to the oracle database system.
