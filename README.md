@@ -15,5 +15,6 @@
 - Salesperson.java: a java file provides salesperson functions.
 
 ## Methods of Compilation and Execution
-- Connect to the Database.
-- Run Main.java directly.
+- Connect to VPN
+- Establish connection to the database system.
+- Run Main.java.
