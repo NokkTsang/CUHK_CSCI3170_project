@@ -39,13 +39,13 @@ public class Administrator {
 
     public void administratorMenu(int choiceAdministratorMenu){
         if (choiceAdministratorMenu == 1) {
-            System.out.print("Processing... ");
+            System.out.print("Processing...");
             //try sql query
             try {
                 //System.out.println("Connected to the database.");
 
                 //read .sql file
-                BufferedReader reader = new BufferedReader(new FileReader("create_table.sql"));
+                BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\jackk\\Documents\\learing materials\\CSCI3170\\CSCI3170project\\src\\create_table.sql"));
                 String line;
                 StringBuilder sql = new StringBuilder();
                 while((line = reader.readLine()) != null) {
@@ -60,19 +60,19 @@ public class Administrator {
                     stmt.executeUpdate(query);
                 }
 
-                //System.out.println("Table created successfully.");
             } catch (Exception e) {
                 System.err.println("Something went wrong connection!");
+                e.printStackTrace();
             }
             System.out.println("Done! Database is initialized!");
         } else if (choiceAdministratorMenu == 2) {
-            System.out.println("Processing... Done!");
+            System.out.print("Processing...");
             //try sql query
             try {
                 //System.out.println("Connected to the database.");
 
                 //read .sql file
-                BufferedReader reader = new BufferedReader(new FileReader("drop_table.sql"));
+                BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\jackk\\Documents\\learing materials\\CSCI3170\\CSCI3170project\\src\\drop_table.sql"));
                 String line;
                 StringBuilder sql = new StringBuilder();
                 while((line = reader.readLine()) != null) {
@@ -88,9 +88,11 @@ public class Administrator {
                 }
             } catch (Exception e) {
                 System.err.println("Something went wrong connection!");
+                e.printStackTrace();
             }
-            System.out.println("Database is removed!");
+            System.out.println("Done! Database is removed!");
         } else if (choiceAdministratorMenu == 3) {
+            System.out.println();
             System.out.print("Type in the Source Data Folder Path: ");
             Scanner path = new Scanner(System.in);
             String sourcePath = path.nextLine();
