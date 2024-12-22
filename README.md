@@ -12,7 +12,7 @@
 ### project-files: a file contains description documents of the project.
 ### src: source code file
 - Main.java: a main file provides the operarion of system.
-- Administrator.java:a java file provides administrator functions.
+- Administrator.java: a java file provides administrator functions.
 - Manager.java: a java file provides manager functions.
 - Salesperson.java: a java file provides salesperson functions.
 
