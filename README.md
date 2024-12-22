@@ -19,5 +19,5 @@
 ## Methods of Compilation and Execution
 - Connect to cuhk cse vpn.
 - Compile the java project.
-- Excute Main.java in the project.
+- Execute Main.java in the project.
 - Follow the instructions of the system for excution.
