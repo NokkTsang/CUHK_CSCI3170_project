@@ -8,12 +8,14 @@
 - Peng Minqi    1155191548
 
 ## File Discription
-- SQL: a file contains all sql statements for the system.
+### SQL: a file contains all sql statements for the system.
+### project-files: a file contains description documents of the project.
+### src: source code file
 - Main.java: a main file provides the operarion of system.
 - Administrator.java:a java file provides administrator functions.
 - Manager.java: a java file provides manager functions.
 - Salesperson.java: a java file provides salesperson functions.
-- project-files: Includes the description document of the sales system, ER diagram, and data.
+
 ## Methods of Compilation and Execution
 - Connect to cuhk cse vpn
 - Establish connection to the oracle database system.
