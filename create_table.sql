@@ -15,7 +15,7 @@ create table part (
     pName varchar(20) not null,
     pPrice integer not null,
     mID integer not null references manufacturer(mID),
-    cID integer not null references category(cID)，
+    cID integer not null references category(cID),
     pWarrantyPeriod integer not null,
     pAvailableQuantity integer not null,
 );
