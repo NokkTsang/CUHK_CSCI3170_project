@@ -17,7 +17,7 @@ create table part (
     mID integer not null references manufacturer(mID),
     cID integer not null references category(cID),
     pWarrantyPeriod integer not null,
-    pAvailableQuantity integer not null,
+    pAvailableQuantity integer not null
 );
 
 create table salesperson (
