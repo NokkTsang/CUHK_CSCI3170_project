@@ -39,6 +39,14 @@ public class Main {
                     }
                     break;
                 case "2":
+                    try {
+                        Connection conn = DriverManager.getConnection("jdbc:oracle:thin:@//db18.cse.cuhk.edu.hk:1521/oradb.cse.cuhk.edu.hk",
+                                "h128", "TwuOllEr");
+                        Salesperson salesperson = new Salesperson(conn);
+                        salesperson.run();
+                    } catch (Exception e) {
+                        System.err.println("Something went wrong connection!");
+                    }
                     break;
                 case "3":
                     try {
