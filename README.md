@@ -15,6 +15,6 @@
 - Salesperson.java: a java file provides salesperson functions.
 
 ## Methods of Compilation and Execution
-- Connect to VPN
-- Establish connection to the database system.
+- Connect to cuhk cse vpn
+- Establish connection to the oracle database system.
 - Run Main.java.
